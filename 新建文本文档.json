@@ -1,0 +1,136 @@
+Options:
+  --version             show program's version number and exit
+  -V, --versions-report
+                        Show program's dependencies version number and exit.
+  -h, --help            show this help message and exit
+  --saltfile=SALTFILE   Specify the path to a Saltfile. If not passed, one
+                        will be searched for in the current working directory.
+  -c CONFIG_DIR, --config-dir=CONFIG_DIR
+                        Pass in an alternative configuration directory.
+                        Default: '/etc/salt'.
+  -u USER, --user=USER  Specify user to run salt-key.
+  --hard-crash          Raise any original exception rather than exiting
+                        gracefully. Default: False.
+  -q, --quiet           Suppress output.
+  -y, --yes             Answer "Yes" to all questions presented. Default:
+                        False.
+  --rotate-aes-key=ROTATE_AES_KEY
+                        Setting this to False prevents the master from
+                        refreshing the key session when keys are deleted or
+                        rejected, this lowers the security of the key
+                        deletion/rejection operation. Default: True.
+  --preserve-minions=PRESERVE_MINIONS
+                        Setting this to True prevents the master from deleting
+                        the minion cache when keys are deleted, this may have
+                        security implications if compromised minions auth with
+                        a previous deleted minion ID. Default: False.
+
+  Logging Options:
+    Logging options which override any settings defined on the
+    configuration files.
+
+    --log-file=KEY_LOGFILE
+                        Log file path. Default: '/var/log/salt/key'.
+    --log-file-level=LOG_LEVEL_LOGFILE
+                        Logfile logging log level. One of 'all', 'garbage',
+                        'trace', 'debug', 'profile', 'info', 'warning',
+                        'error', 'critical', 'quiet'. Default: 'warning'.
+
+  External Authentication:
+    --auth=EAUTH, --eauth=EAUTH, --external-auth=EAUTH
+                        Specify an external authentication system to use.
+    -T, --make-token    Generate and save an authentication token for re-use.
+                        The token is generated and made available for the
+                        period defined in the Salt Master.
+    --username=USERNAME
+                        Username for external authentication.
+    --password=PASSWORD
+                        Password for external authentication.
+
+  Output Options:
+    Configure your preferred output format.
+
+    --out=OUTPUT, --output=OUTPUT
+                        Print the output from the 'salt-key' command using the
+                        specified outputter.
+    --out-indent=OUTPUT_INDENT, --output-indent=OUTPUT_INDENT
+                        Print the output indented by the provided value in
+                        spaces. Negative values disables indentation. Only
+                        applicable in outputters that support indentation.
+    --out-file=OUTPUT_FILE, --output-file=OUTPUT_FILE
+                        Write the output to the specified file.
+    --out-file-append, --output-file-append
+                        Append the output to the specified file.
+    --no-color, --no-colour
+                        Disable all colored output.
+    --force-color, --force-colour
+                        Force colored output.
+    --state-output=STATE_OUTPUT, --state_output=STATE_OUTPUT
+                        Override the configured state_output value for minion
+                        output. One of 'full', 'terse', 'mixed', 'changes' or
+                        'filter'. Default: 'none'.
+    --state-verbose=STATE_VERBOSE, --state_verbose=STATE_VERBOSE
+                        Override the configured state_verbose value for minion
+                        output. Set to True or False. Default: none.
+
+  Actions:
+    -l ARG, --list=ARG  List the public keys. The args 'pre', 'un', and
+                        'unaccepted' will list unaccepted/unsigned keys. 'acc'
+                        or 'accepted' will list accepted/signed keys. 'rej' or
+                        'rejected' will list rejected keys. 'den' or 'denied'
+                        will list denied keys. Finally, 'all' will list all
+                        keys.
+    -L, --list-all      List all public keys. Deprecated: use "--list all".
+    -a ACCEPT, --accept=ACCEPT
+                        Accept the specified public key (use --include-
+                        rejected and --include-denied to match rejected and
+                        denied keys in addition to pending keys). Globs are
+                        supported.
+    -A, --accept-all    Accept all pending keys.
+    -r REJECT, --reject=REJECT
+                        Reject the specified public key. Use --include-
+                        accepted and --include-denied to match accepted and
+                        denied keys in addition to pending keys. Globs are
+                        supported.
+    -R, --reject-all    Reject all pending keys.
+    --include-all       Include rejected/accepted keys when
+                        accepting/rejecting. Deprecated: use "--include-
+                        rejected" and "--include-accepted".
+    --include-accepted  Include accepted keys when rejecting.
+    --include-rejected  Include rejected keys when accepting.
+    --include-denied    Include denied keys when accepting/rejecting.
+    -p PRINT, --print=PRINT
+                        Print the specified public key.
+    -P, --print-all     Print all public keys.
+    -d DELETE, --delete=DELETE
+                        Delete the specified key. Globs are supported.
+    -D, --delete-all    Delete all keys.
+    -f FINGER, --finger=FINGER
+                        Print the specified key's fingerprint.
+    -F, --finger-all    Print all keys' fingerprints.
+
+  Key Generation Options:
+    --gen-keys=GEN_KEYS
+                        Set a name to generate a keypair for use with salt.
+    --gen-keys-dir=GEN_KEYS_DIR
+                        Set the directory to save the generated keypair, only
+                        works with "gen_keys_dir" option. Default: '.'.
+    --keysize=KEYSIZE   Set the keysize for the generated key, only works with
+                        the "--gen-keys" option, the key size must be 2048 or
+                        higher, otherwise it will be rounded up to 2048.
+                        Default: 2048.
+    --gen-signature     Create a signature file of the masters public-key
+                        named master_pubkey_signature. The signature can be
+                        send to a minion in the masters auth-reply and enables
+                        the minion to verify the masters public-key
+                        cryptographically. This requires a new signing-key-
+                        pair which can be auto-created with the --auto-create
+                        parameter.
+    --priv=PRIV         The private-key file to create a signature with.
+    --signature-path=SIGNATURE_PATH
+                        The path where the signature file should be written.
+    --pub=PUB           The public-key file to create a signature for.
+    --auto-create       Auto-create a signing key-pair if it does not yet
+                        exist.
+
+You can find additional help about salt-key issuing "man salt-key" or on

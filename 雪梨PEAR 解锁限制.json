@@ -1,0 +1,28 @@
+{
+  "rules" : [
+    {
+      "action" : "body",
+      "matchField" : "",
+      "field" : "",
+      "value" : "true",
+      "matchValue" : "false",
+      "destiontion" : "response",
+      "isRegex" : true
+    }
+  ],
+  "enabled" : false,
+  "isReadOnly" : false,
+  "name" : "雪梨PEAR 解锁限制 A+",
+  "locations" : [
+    {
+      "method" : "GET",
+      "scheme" : "https",
+      "enabled" : true,
+      "port" : 443,
+      "query" : "",
+      "host" : "m.pearkin.com",
+      "path" : "\/api\/*"
+    }
+  ],
+  "description" : "下载地址，\nhttps:\/\/www.peario.live\/\nwww.pear96.com\nwww.xlsq.live\n\n失效请用Qx规则↓不懂问群\n#https:\\\/\\\/m\\.pearkin\\.com\\\/api\\\/* url script-response-body ppear.js\n\nvar body = $response.body;\nbody=body.replace(\/false\/g,\"true\")\n$done({body});"
+}
